@@ -49,25 +49,28 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function win(playerSelection, computerSelection) {
-    playerScore++;
+    ++playerScore;
     return(`You Win! ${playerSelection} beats ${computerSelection}`);
 }
 
 function lose(playerSelection, computerSelection) {
-    computerScore++;
+    ++computerScore;
     return(`You Lose! ${computerSelection} beats ${playerSelection}`);
 }
 
 function game(){
     computerScore = 0;
     playerScore = 0;
-    for(let i = 0; i < 5; i++){
+
+    /*
+    for(let i = 0; i < 6; i++){
         const playerSelection = prompt("Rock, Paper, or Scissors?");
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
         console.log("Player: " + playerScore);
         console.log("Computer: " + computerScore);
     }
+
     if(playerScore > computerScore){
         return(`Game over, human wins! ( ${playerScore} : ${computerScore})`);
     }
@@ -75,6 +78,49 @@ function game(){
         return(`Game over, the computer wins! ( ${playerScore} : ${computerScore})`);
     }
     else return (`Its a tie! ( ${playerScore} : ${computerScore} )`);
+    */
 }
 
-console.log(game());
+// var to get all buttons
+const btns = document.querySelectorAll('button');
+
+// displays announcing results of each round
+const announce = document.querySelector('.announce');
+
+const finalResults = document.querySelector('.finalResults');
+
+// changes score for each player
+const playerScoreLabel = document.querySelector('.playerScore');
+const cpuScoreLabel = document.querySelector('.computerScore');
+
+
+// save var for computer choice, repeatedly use in btn presses
+let computerSelection;
+btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const playerSelection = btn.innerText;
+        computerSelection = getComputerChoice();
+        announce.innerText = playRound(playerSelection, computerSelection);
+        playerScoreLabel.innerText = `Player: ${playerScore}`;
+        cpuScoreLabel.innerText = `Computer: ${computerScore}`;
+        console.log(`player score: ${playerScore}, CPU score: ${computerScore}`);
+        if(playerScore > 4) {
+            finalResults.innerText = (`Game over, human wins! ( ${playerScore} : ${computerScore})`);
+        }
+        else if(computerScore > 4) {
+            finalResults.innerText = (`Game over, the computer wins! ( ${playerScore} : ${computerScore})`);
+        }
+    });
+});
+
+function checkScore(){
+    if(playerScore > computerScore){
+        return(`Game over, human wins! ( ${playerScore} : ${computerScore})`);
+    }
+    else if(playerScore < computerScore){
+        return(`Game over, the computer wins! ( ${playerScore} : ${computerScore})`);
+    }
+}
+
+
+//console.log(game());
