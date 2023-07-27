@@ -61,24 +61,6 @@ function lose(playerSelection, computerSelection) {
 function game(){
     computerScore = 0;
     playerScore = 0;
-
-    /*
-    for(let i = 0; i < 6; i++){
-        const playerSelection = prompt("Rock, Paper, or Scissors?");
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("Player: " + playerScore);
-        console.log("Computer: " + computerScore);
-    }
-
-    if(playerScore > computerScore){
-        return(`Game over, human wins! ( ${playerScore} : ${computerScore})`);
-    }
-    else if(playerScore < computerScore){
-        return(`Game over, the computer wins! ( ${playerScore} : ${computerScore})`);
-    }
-    else return (`Its a tie! ( ${playerScore} : ${computerScore} )`);
-    */
 }
 
 // var to get all buttons
@@ -121,6 +103,3 @@ function checkScore(){
         return(`Game over, the computer wins! ( ${playerScore} : ${computerScore})`);
     }
 }
-
-
-//console.log(game());
